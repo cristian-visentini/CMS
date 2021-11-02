@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Site\SiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('site')->group(function (){
+    Route::get( '/', [SiteController::class, 'index'])->name('site.index');
 });
+
+Route::prefix('admin')->group(function (){
+  //  dd('roa admin');
+    Route::get( '/', [AdminController::class, 'index'])->name('admin.index');
+});
+
+Route::get( '/', [SiteController::class, 'index'])->name('site.index');
