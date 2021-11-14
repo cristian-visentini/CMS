@@ -27,10 +27,10 @@ class UsersController extends Controller
         $user = User::create([
             'name' => $validate['name'],
             'email' => $validate['email'],
-            'password' => Hash::make($validate['passwrd']),
+            'password' => Hash::make($validate['password']),
         ]);
         Auth::login($user);
 
-        return redirect()->route('admin');
+        return redirect()->route('admin.index');
     }
 }
